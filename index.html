@@ -174,6 +174,33 @@ body{font:500 18px/1.8 "Noto Serif JP","Zen Old Mincho",serif;letter-spacing:.02
 .join b{font-family:"Zen Old Mincho",serif;font-size:clamp(30px,6vw,40px);line-height:1;color:#ffd166;margin:0 2px}
 .join span{font-size:15px;font-weight:500;color:#c9d2e6}
 #pRank .join{margin:0 0 16px}
+.agesel{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-weight:700;margin:0 0 6px}
+.agesel select{font:inherit;font-size:17px;min-height:48px;padding:6px 12px;border:2px solid var(--ink);border-radius:6px;background:var(--paper);color:var(--ink)}
+.err{color:var(--key);font-weight:700;margin:6px 0 0}
+.ghost.wide{width:100%;margin-top:14px;min-height:52px}
+.survey{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:18px;counter-reset:sv}
+.survey li{counter-increment:sv;border-top:1px solid var(--line);padding-top:14px}
+.survey .st{font-weight:700;margin:0 0 10px}
+.survey .st::before{content:"Q" counter(sv) "　";color:var(--key)}
+.scale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.scale label{position:relative}
+.scale input{position:absolute;opacity:0;inset:0}
+.scale span{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:4px;border:1.5px solid var(--line);border-radius:6px;font-size:14px;line-height:1.3;font-family:"Noto Sans JP",sans-serif;cursor:pointer;background:var(--paper)}
+.scale input:checked+span{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.scale input:focus-visible+span{outline:3px solid var(--key);outline-offset:2px}
+.svres{margin-top:22px;padding:18px;border:2px solid var(--ink);border-radius:8px}
+.svlab{margin:0;font-weight:700;color:var(--sub)}
+.svbig{margin:4px 0 12px;font-family:"Zen Old Mincho",serif;font-weight:900;font-size:clamp(26px,5vw,34px)}
+.meter{position:relative;height:14px;border-radius:7px;background:linear-gradient(90deg,#d23a2a,#e6e6e6 50%,#1f4f9e);margin:8px 0 26px}
+.meter i{position:absolute;top:-6px;width:6px;height:26px;background:var(--ink);border-radius:3px;transform:translateX(-50%);transition:left .6s}
+.meter span{position:absolute;top:18px;font-size:13px;font-weight:700;font-family:"Noto Sans JP",sans-serif}
+.meter span:last-child{right:0}
+.agetbl{width:100%;border-collapse:collapse;margin-top:12px;font-size:16px}
+.agetbl th,.agetbl td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+.agetbl th:first-child,.agetbl td:first-child{text-align:left}
+.agetbl td small{color:var(--sub);font-size:13px;margin-left:4px}
+.agetbl .lw{color:#d23a2a;font-weight:900}.agetbl .rw{color:#1f4f9e;font-weight:900}
+@media(max-width:600px){.scale span{font-size:12px;min-height:52px}}
 </style>
 </head>
 <body>
@@ -203,7 +230,8 @@ body{font:500 18px/1.8 "Noto Serif JP","Zen Old Mincho",serif;letter-spacing:.02
     <li>現代社会の問題は、出入国在留管理庁（法務省）や厚生労働省などの公的統計にもとづいています。</li>
     <li>人物名・出来事名を問う問題のみで、年号は問いません。</li>
     <li>1問の制限時間は30秒。時間切れは不正解になります。</li>
-    <li>もう一度受けると、あなたの記録は最新の結果に置き換わります。</li>
+    <li>ランキングに集計されるのは、1人1回目の結果だけです。2回目以降は練習としてどうぞ。</li>
+    <li>立場を決められない人は、8問のアンケートで判定できます。</li>
   </ul>
   <p class="caveat">※ 立場は参加者の自己申告です。結果は科学的な調査ではなく、あくまで参考値としてご覧ください。</p>
 </section>
@@ -220,19 +248,41 @@ body{font:500 18px/1.8 "Noto Serif JP","Zen Old Mincho",serif;letter-spacing:.02
     <div class="col R"><div class="nm">保守<small class="tag">（右翼）</small><span class="crown hide" id="cR">首位</span></div><div class="tube"><div class="fill" id="fR"></div><div class="avg" id="aR">–</div></div><div class="meta" id="mR">集計中…</div></div>
   </div>
   <p class="caveat">※ 立場は参加者の自己申告です。結果は科学的な調査ではなく、あくまで参考値としてご覧ください。</p>
-  <p class="note" id="dbNote">各陣営の得点の中央値（真ん中の人の点数）で比べています。全受験者それぞれの最新の結果を1人1票で集計し、約10秒ごとに自動で更新されます。</p>
+  <p class="note" id="dbNote">各陣営の得点の中央値（真ん中の人の点数）で比べています。1人1回目の結果だけを集計し、各陣営30人以上そろってから、統計的に意味のある差があるときだけ勝敗を判定します。</p>
 
+  <h2 class="sub">年代別の中央値</h2>
+  <p class="note">同じ年代どうしで比べると、年齢の違いによる影響を除いて比較できます。</p>
+  <table class="agetbl"><thead><tr><th>年代</th><th>リベラル</th><th>保守</th></tr></thead><tbody id="ageBody"></tbody></table>
   <div class="cta"><a class="next" href="#test">テストを受けて参戦する</a></div>
 </section>
 
 <section id="vPick" class="page hide">
   <h2 class="ptitle">あなたはどちらですか？</h2>
-  <p class="lead">自分の立場を選ぶと、すぐにテストが始まります（全10問・各30秒）。</p>
+  <label class="agesel" for="age">あなたの年代
+    <select id="age"><option value="">選んでください</option><option>10代以下</option><option>20代</option><option>30代</option><option>40代</option><option>50代</option><option>60代以上</option></select>
+  </label>
+  <p class="err hide" id="ageErr">先に年代を選んでください。</p>
+  <p class="lead">年代と立場を選ぶと、すぐにテストが始まります（全10問・各30秒）。</p>
   <div class="pick">
     <button class="side L" data-side="left">リベラル（左翼）<span>の立場で受験する</span></button>
     <button class="side R" data-side="right">保守（右翼）<span>の立場で受験する</span></button>
   </div>
-  <p class="caveat">※ 立場は参加者の自己申告です。</p>
+  <button class="ghost wide" id="goSurvey">どちらか決められない人は、アンケートで判定する</button>
+  <p class="caveat">※ 立場は参加者の自己申告です。集計されるのは、1人1回目の結果だけです。</p>
+</section>
+
+<section id="vSurvey" class="page hide">
+  <h2 class="ptitle">スタンス判定アンケート</h2>
+  <p class="lead">次の8つの意見について、あなたの考えに近いものを選んでください。答えをもとに、リベラル（左翼）と保守（右翼）のどちらに近いかを判定します。回答そのものは保存されません。</p>
+  <ol class="survey" id="survey"></ol>
+  <p class="err hide" id="svErr">すべての項目に答えてください。</p>
+  <button class="next" id="svDone">判定する</button>
+  <div class="svres hide" id="svRes">
+    <p class="svlab">判定結果</p>
+    <p class="svbig" id="svBig"></p>
+    <div class="meter"><i id="svPin"></i><span>リベラル</span><span>保守</span></div>
+    <div class="cta" id="svCta"></div>
+  </div>
 </section>
 
 <section id="pShare" class="page hide">
@@ -421,7 +471,31 @@ function build(){
   out.splice(pos,0,pick(q=>q[7])[0]); // 難問は後半のどこかに1問
   return out.map(q=>({era:q[0],t:q[1],a:q[2],opts:shuf([q[2],q[3],q[4],q[5]]),note:q[6],hard:!!q[7],cat:q[8]}));
 }
-function start(side){st={side,set:build(),i:0,ans:[]};show("vQuiz");renderQ()}
+const SURVEY=[
+ ["憲法9条を改正し、自衛隊の存在を明記すべきだ",1],
+ ["スパイ行為を取り締まる「スパイ防止法」を制定すべきだ",1],
+ ["日本の国旗を傷つける行為を処罰する「国旗損壊罪」を新設すべきだ",1],
+ ["防衛費をさらに増やすべきだ",1],
+ ["原子力発電所の再稼働を進めるべきだ",1],
+ ["選択的夫婦別姓制度を導入すべきだ",-1],
+ ["同性婚を法律で認めるべきだ",-1],
+ ["永住外国人に地方選挙の投票権を認めるべきだ",-1]];
+const SCALE=["反対","やや反対","どちらとも言えない","やや賛成","賛成"];
+$("survey").innerHTML=SURVEY.map((q,i)=>`<li><p class="st">${esc(q[0])}</p><div class="scale">${SCALE.map((l,j)=>`<label><input type="radio" name="sv${i}" value="${j-2}"><span>${l}</span></label>`).join("")}</div></li>`).join("");
+function judge(){
+  let sum=0;for(let i=0;i<SURVEY.length;i++){const c=document.querySelector(`input[name=sv${i}]:checked`);if(!c){$("svErr").classList.remove("hide");return}sum+=Number(c.value)*SURVEY[i][1]}
+  $("svErr").classList.add("hide");
+  const max=SURVEY.length*2,side=sum>0?"right":sum<0?"left":null,nm=side==="left"?"リベラル":"保守";
+  $("svBig").textContent=side?`あなたは「${Math.abs(sum)>=max/2?nm+"寄り":"やや"+nm}」です`:"あなたはちょうど中間です。参加する側を選んでください";
+  $("svPin").style.left=((sum+max)/(2*max)*100)+"%";
+  $("svCta").innerHTML=side?`<button class="next" data-side="${side}" data-method="survey" data-lean="${sum}">${SIDE[side]}としてテストを受ける</button>`:`<button class="next" data-side="left" data-method="survey" data-lean="0">リベラル（左翼）として受ける</button><button class="next" data-side="right" data-method="survey" data-lean="0">保守（右翼）として受ける</button>`;
+  $("svRes").classList.remove("hide");$("svRes").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function start(side,method,lean){
+  const age=$("age").value;
+  if(!age){testView="vPick";route();$("ageErr").classList.remove("hide");$("age").focus();return}
+  $("ageErr").classList.add("hide");
+  st={side,age,method:method||"self",lean:lean==null?null:Number(lean),set:build(),i:0,ans:[]};show("vQuiz");renderQ()}
 window.addEventListener("hashchange",route);
 function renderQ(){
   const q=st.set[st.i];
@@ -460,29 +534,53 @@ async function finish(){
   const s=$("rStatus");
   s.textContent="総合ランキングに記録しています…";
   try{
-    const r=await rpc("submit_result",{p_device:deviceId(),p_side:side,p_score:score});
-    s.textContent=r==="ok"?"総合ランキングに記録しました。":r==="too_soon"?"短時間に続けて受験したため、今回の結果は記録されませんでした（1分ほど空けてください）。":"今回の結果は記録されませんでした。";
+    let r;
+    try{r=await rpc("submit_result_v2",{p_device:deviceId(),p_side:side,p_score:score,p_age:st.age,p_method:st.method,p_lean:st.lean})}
+    catch(e){r=await rpc("submit_result",{p_device:deviceId(),p_side:side,p_score:score})}
+    s.textContent=r==="ok"?"総合ランキングに記録しました。":r==="already"?"ランキングに集計されるのは1回目の結果だけなので、今回の結果は記録されていません。":r==="too_soon"?"短時間に続けて受験したため、今回の結果は記録されませんでした。":"今回の結果は記録されませんでした。";
     loadStats();
   }catch(e){s.textContent="記録に失敗しました。時間をおいてもう一度受けてください。"}
 }
 
 const median=xs=>{if(!xs.length)return null;const v=xs.slice().sort((p,q)=>p-q),m=v.length>>1;return v.length%2?v[m]:(v[m-1]+v[m])/2};
 const fmt=v=>Number.isInteger(v)?String(v):v.toFixed(1);
-let cnt={left:0,right:0},av={left:null,right:null},stats={};
+let cnt={left:0,right:0},av={left:null,right:null};
+const AGES=["10代以下","20代","30代","40代","50代","60代以上"],MIN_N=30;let approx=false;
+function pts(side,age){const o=[];for(const r of rows){if(r.side!==side||(age&&r.age!==age))continue;const x=Number(r.score),c=Math.max(1,Number(r.n)||1);if(x>=0&&x<=100)o.push([x,c])}return o}
+function medW(p){const tot=p.reduce((a,b)=>a+b[1],0);if(!tot)return null;const v=p.slice().sort((a,b)=>a[0]-b[0]),lo=Math.floor((tot-1)/2),hi=Math.floor(tot/2);let acc=0,a=null,b=null;for(const[x,c]of v){if(a==null&&acc+c>lo)a=x;if(b==null&&acc+c>hi)b=x;acc+=c}return(a+b)/2}
+function Phi(z){const t=1/(1+.2316419*z),d=.3989423*Math.exp(-z*z/2);return 1-d*t*(.3193815+t*(-.3565638+t*(1.781478+t*(-1.821256+t*1.330274))))}
+function mwP(a,b){ // マン・ホイットニーのU検定（両側、正規近似・同順位補正）
+  const n1=a.reduce((s,x)=>s+x[1],0),n2=b.reduce((s,x)=>s+x[1],0);if(!n1||!n2)return 1;
+  const m=new Map();for(const[x,c]of a){const v=m.get(x)||[0,0];v[0]+=c;m.set(x,v)}for(const[x,c]of b){const v=m.get(x)||[0,0];v[1]+=c;m.set(x,v)}
+  let r=0,R1=0,T=0;for(const k of[...m.keys()].sort((p,q)=>p-q)){const[c1,c2]=m.get(k),t=c1+c2;R1+=c1*(r+(t+1)/2);T+=t**3-t;r+=t}
+  const N=n1+n2,U=R1-n1*(n1+1)/2,sd=Math.sqrt(n1*n2/12*((N+1)-T/(N*(N-1))));if(!sd)return 1;
+  return 2*(1-Phi(Math.abs(U-n1*n2/2)/sd));
+}
 function drawBoard(){
+  const P={left:pts("left"),right:pts("right")};
   for(const [k,c] of [["left","L"],["right","R"]]){
-    const g=stats[k]||{n:0},n=Number(g.n)||0,v=n?Number(g.median):null;av[k]=v;const h=Math.min(100,Math.max(0,v||0));
+    const p=P[k],n=p.reduce((s,x)=>s+x[1],0),v=medW(p);av[k]=v;const h=Math.min(100,Math.max(0,v||0));
     $("f"+c).style.height=h+"%";
     const el=$("a"+c);el.innerHTML=n?`${fmt(v)}<small>点</small>`:"–";
     el.style.bottom=`max(8px, calc(${h}% - 0.9em))`;
     cnt[k]=n;
-    $("m"+c).textContent=n?`中央値・受験者 ${n.toLocaleString()}人・最高 ${Number(g.top)}点`:"まだ受験者がいません";
+    $("m"+c).textContent=n?`中央値・受験者 ${n.toLocaleString()}人・最高 ${Math.max(...p.map(x=>x[0]))}点`:"まだ受験者がいません";
   }
+  $("ageBody").innerHTML=AGES.concat(rows.some(r=>r.age==="不明")?["不明"]:[]).map(ag=>{
+    const l=pts("left",ag),r=pts("right",ag),ln=l.reduce((s,x)=>s+x[1],0),rn=r.reduce((s,x)=>s+x[1],0),lm=medW(l),rm=medW(r);
+    const lw=ln&&rn&&lm>rm,rw=ln&&rn&&rm>lm;
+    return `<tr><td>${ag}</td><td class="${lw?"lw":""}">${ln?fmt(lm)+"点":"–"}<small>${ln}人</small></td><td class="${rw?"rw":""}">${rn?fmt(rm)+"点":"–"}<small>${rn}人</small></td></tr>`}).join("");
   const W=$("win"),big=$("winBig"),df=$("winDiff"),sp=$("split");
   let lead=null,txt,dtxt="";
   if(av.left==null&&av.right==null){txt="まだ受験者がいません";}
   else if(av.left==null||av.right==null){lead=av.left==null?"right":"left";txt=SIDE[lead]+"が暫定リード";dtxt=(lead==="left"?"保守":"リベラル")+"の受験者はまだ0人";}
-  else{const d=av.left-av.right;if(Math.abs(d)<0.05)txt="両陣営が同点";else{lead=d>0?"left":"right";txt=SIDE[lead]+"の勝ち";dtxt=fmt(Math.abs(d))+"点差（リベラル "+fmt(av.left)+"点 対 保守 "+fmt(av.right)+"点）";}}
+  else{
+    const d=av.left-av.right,few=Math.min(cnt.left,cnt.right)<MIN_N||approx,pv=few?1:mwP(P.left,P.right),vs="（リベラル "+fmt(av.left)+"点 対 保守 "+fmt(av.right)+"点）";
+    if(Math.abs(d)>=0.05)lead=d>0?"left":"right";
+    if(few){txt=lead?SIDE[lead]+"が暫定リード":"暫定で同点";dtxt=(lead?fmt(Math.abs(d))+"点差":"")+vs+"　※各陣営"+MIN_N+"人以上で勝敗を判定します";}
+    else if(pv<0.05&&lead){txt=SIDE[lead]+"の勝ち";dtxt=fmt(Math.abs(d))+"点差"+vs+"　統計的にも意味のある差です";}
+    else{txt="互角";dtxt="差は統計的な誤差の範囲です"+vs;lead=null;}
+  }
   big.textContent=txt;df.textContent=dtxt;
   W.className="win"+(lead==="left"?" L":lead==="right"?" R":"");
   $("cL").classList.toggle("hide",lead!=="left");$("cR").classList.toggle("hide",lead!=="right");
@@ -540,10 +638,12 @@ function localOnly(msg){
 
 document.addEventListener("click",e=>{
   const b=e.target.closest("button");if(!b)return;
-  if(b.dataset.side)start(b.dataset.side);
+  if(b.dataset.side)start(b.dataset.side,b.dataset.method,b.dataset.lean);
+  else if(b.id==="goSurvey")show("vSurvey");
+  else if(b.id==="svDone")judge();
   else if(b.classList.contains("opt")&&!b.disabled)answer(b);
   else if(b.id==="qNext")next();
-  else if(b.id==="rAgain")start(st.side);
+  else if(b.id==="rAgain")start(st.side,st.method,st.lean);
   else if(b.id==="shCopy")copyShare(b);
   else if(b.id==="psCopy")copyShare(b,true);
 });
@@ -552,8 +652,8 @@ try{localMine=JSON.parse(localStorage.getItem("jh-last")||"null")}catch(e){}
 route();drawBoard();$("winBig").textContent="集計中…";
 async function loadStats(){
   try{
-    const res=await rpc("get_standings",{});stats={};
-    for(const r of res||[])if(r.side==="left"||r.side==="right")stats[r.side]=r;
+    try{const res=await rpc("get_results_v2",{});if(!Array.isArray(res))throw 0;rows=res.map(r=>({side:r.side,age:r.age,score:Number(r.score),n:Number(r.n)}));approx=false}
+    catch(e){const res=await rpc("get_standings",{});rows=(res||[]).map(r=>({side:r.side,score:Number(r.median),n:Number(r.n)}));approx=true}
     drawBoard();
   }catch(e){$("winBig").textContent="読み込めませんでした"}
 }
