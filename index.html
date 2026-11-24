@@ -164,6 +164,10 @@ body{font:500 18px/1.8 "Noto Serif JP","Zen Old Mincho",serif;letter-spacing:.02
 .cat{font:700 14px "Noto Sans JP",sans-serif;padding:2px 10px;border-radius:99px;color:#fff;white-space:nowrap}
 .cat.culture{background:#2e7d4f}.cat.law{background:#6a3fa0}.cat.war{background:#8a1c1c}.cat.soc{background:#0f6e7a}
 .hardtag{background:#c8102e;color:#fff}
+.impact{margin:0 0 14px;padding:12px 14px;border-radius:12px;font-weight:700;border:1px solid var(--line);border-left:6px solid var(--line);background:var(--card)}
+.impact.L{border-left-color:#c8102e}.impact.R{border-left-color:#1e40af}
+.impact .mv{display:block;font-size:clamp(18px,4vw,22px);margin-top:4px}
+.impact small{display:block;font-weight:400;color:var(--sub);font-size:14px;margin-top:4px}
 .win .big{font-family:"Zen Old Mincho",serif}
 .live{font-size:17px}
 .next,.ghost,.sh{font-family:"Noto Serif JP",serif;font-weight:700;font-size:18px}
@@ -335,6 +339,7 @@ body{font:500 18px/1.8 "Noto Serif JP","Zen Old Mincho",serif;letter-spacing:.02
 <section id="vResult" class="page hide">
   <div class="head"><h2 id="rTitle">結果</h2><div class="stamp" id="rSide"></div></div>
   <div class="score"><b id="rScore">0</b><span id="rMsg"></span></div>
+  <div class="impact hide" id="rImpact"></div>
   <p class="status" id="rStatus"></p>
   <p class="live" id="rLive" aria-live="polite"></p>
   <div class="share">
@@ -548,10 +553,24 @@ function answer(btn){
 }
 function next(){clearInterval(tm);st.i++;if(st.i<N)renderQ();else finish()}
 
+function terr(l,r){const ln=l.reduce((a,b)=>a+b[1],0),rn=r.reduce((a,b)=>a+b[1],0);if(ln<3||rn<3)return "空白地帯";const d=medW(l)-medW(r);return Math.abs(d)<0.05?"拮抗":d>0?"リベラル制圧":"保守制圧"}
+function calcImpact(side,age,score){ // 記録前の戦況から、自分の1票で領地がどう動くかを計算
+  const me=pts(side,age),op=pts(side==="left"?"right":"left",age),after=me.concat([[score,1]]),L=side==="left";
+  return{side,age,b:medW(me),a:medW(after),t0:L?terr(me,op):terr(op,me),t1:L?terr(after,op):terr(op,after)};
+}
+function showImpact(m,rec){
+  const el=$("rImpact"),nm=m.side==="left"?"リベラル":"保守";el.className="impact "+(m.side==="left"?"L":"R");
+  if(!rec){el.innerHTML=`今回は2回目以降の受験なので、領地には影響しません。<small>戦況に数えるのは1人1回目の結果だけです。</small>`;return}
+  const d=m.b==null?null:m.a-m.b;
+  const mv=m.b==null?`${nm}の最初の兵として ${fmt(m.a)}点 を記録`:`${nm}の中央値 ${fmt(m.b)}点 → ${fmt(m.a)}点（${d>0?"+":d<0?"−":"±"}${fmt(Math.abs(d))}）`;
+  const tt=m.t0===m.t1?`領地の状況：${m.t1}`:`領地の状況：${m.t0} → ${m.t1}`;
+  el.innerHTML=`${esc(m.age)}の領地に${nm}として出陣！<span class="mv">${mv}</span><small>${tt}${m.t1==="空白地帯"?"（両陣営が3人以上になると領地が決まります）":""}</small>`;
+}
 async function finish(){
   $("qBar").style.width="100%";
   const score=st.ans.filter(a=>a.ok).length*10,side=st.side;
   $("rSide").textContent=SIDE[side]+"として受験";$("rScore").textContent=score;
+  const imp=calcImpact(side,st.age,score);$("rImpact").classList.add("hide");
   $("rMsg").textContent=score===100?"満点です。":score>=80?"よく知っています。":score>=50?"まずまずの成績です。":"復習してもう一度どうぞ。";
   $("rReview").innerHTML=st.ans.map((a,i)=>`<li><span class="m ${a.ok?"o":"x"}">${a.ok?"○":"×"}</span><div>${i+1}. ${a.q.hard?"<b class=\"hardtag\">難問</b> ":""}${esc(a.q.t)}<small>正解：${esc(a.q.a)}${a.ok?"":"　あなたの回答："+(a.v==null?"時間切れ":esc(a.v))}</small></div></li>`).join("");
   show("vResult");
@@ -564,6 +583,7 @@ async function finish(){
     try{r=await rpc("submit_result_v2",{p_device:deviceId(),p_side:side,p_score:score,p_age:st.age,p_method:st.method,p_lean:st.lean})}
     catch(e){r=await rpc("submit_result",{p_device:deviceId(),p_side:side,p_score:score})}
     s.textContent=r==="ok"?"戦況に記録しました。":r==="already"?"戦況に集計されるのは1回目の結果だけなので、今回の結果は記録されていません。":r==="too_soon"?"短時間に続けて受験したため、今回の結果は記録されませんでした。":"今回の結果は記録されませんでした。";
+    if(r==="ok")showImpact(imp,true);else if(r==="already")showImpact(imp,false);
     loadStats();
   }catch(e){s.textContent="記録に失敗しました。時間をおいてもう一度受けてください。"}
 }
