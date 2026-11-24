@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本当の愛国者はどっち？ リベラル（左翼）VS保守（右翼） 日本史テスト</title>
+<meta name="description" content="リベラル（左翼）と保守（右翼）、本当の愛国者はどっち？ 明治・大正・昭和の日本史10問で対決。">
+<meta property="og:title" content="本当の愛国者はどっち？ リベラル（左翼）VS保守（右翼） 日本史テスト">
+<meta property="og:description" content="リベラル（左翼）と保守（右翼）、本当の愛国者はどっち？ 明治・大正・昭和の日本史10問で対決。">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://aikokusha-test.github.io/ogp.png">
+<meta name="twitter:image" content="https://aikokusha-test.github.io/ogp.png">
+<meta property="og:url" content="https://aikokusha-test.github.io/">
+<script src="config.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@700;900&family=Noto+Serif+JP:wght@500;700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: 試験会場の公平な審判。煽らず、点数だけが語る。
+   IDEA: 体育祭の紅白得点板と、マス目のある答案用紙。
+   PICTURE: 二本の大きな得点柱（左翼＝朱、右翼＝藍）が平均点まで伸びる得点板。
+   COLOUR and TYPE: 白い答案用紙、墨の文字、朱と藍の二陣営色。見出しは Zen Old Mincho、本文は Noto Sans JP。
+   LAYOUT: 一枚の答案用紙。上に得点板、下に陣営選択。問題は一列で中央に。 */
+:root{color-scheme:light dark;
+--bg:#14213d;--paper:light-dark(#ffffff,#1b1e21);--ink:light-dark(#16181a,#ecebe6);--sub:light-dark(#5d6166,#a3a7ac);
+--line:light-dark(#d9dad6,#33373b);--grid:light-dark(#eef0ec,#22262a);
+--L:light-dark(#d23a2a,#ff6f5c);--Lsoft:light-dark(#fbe6e2,#3a1f1b);--R:light-dark(#1f4f9e,#7aa7ff);--Rsoft:light-dark(#e2eaf8,#1b2640);
+--ok:light-dark(#1d7a46,#5fd393);--ng:light-dark(#b3261e,#ff8a80)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "Noto Sans JP",system-ui,sans-serif;overflow-x:clip}
+h1,h2,.mincho{font-family:"Zen Old Mincho",serif;font-weight:900;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,6vw,50px)}h2{font-size:clamp(22px,3.6vw,30px)}
+.wrap{max-width:880px;margin:0 auto;padding:clamp(16px,4vw,40px) max(4vw,14px) 48px}
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:clamp(18px,4vw,40px);
+background-image:linear-gradient(var(--grid) 1px,transparent 1px);background-size:100% 34px;background-position:0 -1px;box-shadow:0 1px 0 var(--line),0 14px 40px -24px rgba(0,0,0,.35)}
+.head{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between;border-bottom:3px double var(--ink);padding-bottom:14px;margin-bottom:22px}
+.lead{color:var(--sub);margin:10px 0 0;max-width:60ch}
+.red{color:light-dark(#c8102e,#ff5a5a);font-style:normal}
+.kicker{margin:0 0 8px;font-weight:700;color:var(--sub);font-size:15px}
+.stamp{font-family:"Zen Old Mincho",serif;font-weight:700;border:2px solid var(--ink);padding:4px 10px;font-size:14px;white-space:nowrap}
+/* 得点板 */
+.board{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(12px,3vw,28px);align-items:end}
+.col{display:grid;grid-template-rows:auto 260px auto;gap:10px;text-align:center}
+.col .nm{font-family:"Zen Old Mincho",serif;font-weight:900;font-size:clamp(24px,4vw,32px)}
+.tube{position:relative;border:2px solid var(--ink);border-radius:4px 4px 0 0;background:repeating-linear-gradient(to top,transparent 0 25.6px,var(--line) 25.6px 26px);overflow:hidden}
+.fill{position:absolute;left:0;right:0;bottom:0;height:0;transition:height .9s cubic-bezier(.2,.8,.2,1)}
+.L .fill{background:linear-gradient(to top,var(--L),color-mix(in srgb,var(--L) 75%,#fff))}
+.R .fill{background:linear-gradient(to top,var(--R),color-mix(in srgb,var(--R) 75%,#fff))}
+.avg{position:absolute;left:0;right:0;font-family:"Zen Old Mincho",serif;font-weight:900;font-size:clamp(34px,7vw,56px);line-height:1;color:var(--ink);bottom:8px;transition:bottom .9s cubic-bezier(.2,.8,.2,1)}
+.avg small{font-size:.38em;font-weight:700;margin-left:2px}
+.meta{font-size:14px;color:var(--sub)}
+.L .nm{color:var(--L)}.R .nm{color:var(--R)}
+.win{margin:0 0 22px;border:2px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--paper)}
+.win .top{padding:16px 18px;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;background:var(--grid)}
+.win.L .top{background:var(--L);color:#fff}.win.R .top{background:var(--R);color:#fff}
+.win .lab{font-size:14px;font-weight:700;opacity:.85}
+.win .big{font-family:"Zen Old Mincho",serif;font-weight:900;font-size:clamp(30px,6.5vw,48px);line-height:1.1}
+.win .diff{font-weight:700;font-size:17px}
+.split{display:flex;height:40px;font-weight:700;font-size:15px;color:#fff}
+.split div{display:flex;align-items:center;padding:0 12px;white-space:nowrap;flex-basis:0;min-width:96px;transition:flex-grow .9s}
+.split .sl{background:var(--L)}.split .sr{background:var(--R);justify-content:flex-end}
+.split .none{flex:1;justify-content:center;color:var(--sub);background:var(--grid)}
+.nm .tag{font-size:.5em;font-weight:700;white-space:nowrap}
+.col .nm{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:0 4px}.col .crown{align-self:center}
+.crown{display:inline-block;margin-left:6px;font:700 12px "Noto Sans JP",sans-serif;padding:2px 8px;border-radius:99px;background:var(--ink);color:var(--paper);vertical-align:middle}
+.verdict{display:none}
+.note{font-size:13px;color:var(--sub);margin-top:10px}
+/* 選択 */
+.pick{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-top:26px}
+button{font:inherit;cursor:pointer;color:inherit}
+button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.side{min-height:64px;border-radius:6px;border:2px solid;font-family:"Zen Old Mincho",serif;font-weight:900;font-size:22px;background:var(--paper);transition:transform .15s}
+.side:hover{transform:translateY(-2px)}
+.side.L{border-color:var(--L);color:var(--L)}.side.L:hover{background:var(--Lsoft)}
+.side.R{border-color:var(--R);color:var(--R)}.side.R:hover{background:var(--Rsoft)}
+.side span{display:block;font:400 13px "Noto Sans JP",sans-serif;color:var(--sub)}
+.rules{margin:22px 0 0;padding-left:1.2em;color:var(--sub);font-size:15px}
+/* 問題 */
+.bar{height:4px;background:var(--grid);border-radius:2px;overflow:hidden;margin:8px 0 10px}
+.bar i{display:block;height:100%;background:var(--ink);transition:width .3s}
+.qno{font-family:"Zen Old Mincho",serif;font-weight:900;font-size:20px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.era{font:700 13px "Noto Sans JP",sans-serif;border:1px solid var(--line);border-radius:99px;padding:2px 10px;color:var(--sub);white-space:nowrap}
+.tm{display:flex;align-items:center;gap:10px}
+.sec{font-family:"Zen Old Mincho",serif;font-weight:900;font-size:26px;min-width:2.6em;text-align:right;white-space:nowrap}
+.sec::after{content:"秒";font-size:.55em;margin-left:2px}
+.sec.warn{color:var(--ng)}
+.tbar{height:10px;background:var(--grid);border-radius:5px;overflow:hidden;margin:0 0 18px}
+.tbar i{display:block;height:100%;width:100%;background:var(--ok);transform-origin:left}
+.tbar i.warn{background:var(--ng)}
+.qt{font-size:clamp(18px,2.6vw,22px);font-weight:700;margin:14px 0 20px;line-height:1.6}
+.opts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.opt{min-height:56px;text-align:left;padding:12px 14px 12px 48px;position:relative;background:var(--paper);border:1.5px solid var(--line);border-radius:6px;font-size:17px;font-weight:700}
+.opt::before{content:attr(data-k);position:absolute;left:12px;top:50%;translate:0 -50%;width:26px;height:26px;border:1.5px solid var(--ink);border-radius:50%;display:grid;place-items:center;font:700 13px "Noto Sans JP"}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt:disabled{cursor:default}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--paper))}
+.opt.ng{border-color:var(--ng);background:color-mix(in srgb,var(--ng) 12%,var(--paper))}
+.fb{min-height:28px;margin:16px 0 0;font-weight:700}
+.fb .o{color:var(--ok)}.fb .x{color:var(--ng)}
+.fb p{font-weight:400;color:var(--sub);margin:6px 0 0;font-size:15px}
+.next{margin-top:16px;min-height:52px;width:100%;border-radius:6px;border:0;background:var(--ink);color:var(--paper);font-weight:700;font-size:17px}
+/* 結果 */
+.score{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:8px 0 6px}
+.score b{font-family:"Zen Old Mincho",serif;font-size:clamp(64px,14vw,112px);line-height:1;color:var(--ng)}
+.score b::after{content:"点";font-size:.32em;margin-left:4px;color:var(--ink)}
+.review{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:8px}
+.review li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:8px;padding:10px 0;border-bottom:1px dashed var(--line);font-size:15px}
+.review .m{font-family:"Zen Old Mincho",serif;font-weight:900;font-size:20px;line-height:1.2}
+.review .m.o{color:var(--ok)}.review .m.x{color:var(--ng)}
+.review small{color:var(--sub);display:block}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.ghost{min-height:48px;padding:0 18px;border-radius:6px;border:1.5px solid var(--ink);background:transparent;font-weight:700}
+.status{font-size:14px;color:var(--sub);margin-top:12px}
+.hide{display:none!important}
+.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin:calc(-1*clamp(18px,4vw,40px)) calc(-1*clamp(18px,4vw,40px)) 26px;border-bottom:2px solid var(--ink);background:var(--paper);position:sticky;top:0;z-index:5;border-radius:6px 6px 0 0}
+.tabs a{min-height:52px;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px 4px;font-weight:700;font-size:15px;color:var(--sub);text-decoration:none;border-bottom:4px solid transparent;line-height:1.25}
+.tabs a:hover{color:var(--ink)}
+.tabs a[aria-current=page]{color:var(--ink);border-bottom-color:var(--ink)}
+.tabs a:focus-visible{outline:3px solid var(--ink);outline-offset:-3px}
+.ptitle{margin:0 0 16px}
+.sub{font-size:22px;margin:30px 0 0}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.cta a,.row a{display:flex;align-items:center;justify-content:center;text-decoration:none;flex:1 1 200px;margin:0}
+.ghost{color:var(--ink)}
+.preview{margin:16px 0 0;padding:14px 16px;border:1.5px solid var(--line);border-radius:6px;background:var(--paper);white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px}
+@media(max-width:600px){.tabs a{font-size:13px;min-height:48px}}
+.caveat{margin:12px 0 0;font-size:14px;font-weight:700;color:var(--sub);border:1px dashed var(--line);padding:8px 12px;border-radius:4px}
+.hardtag{font:700 13px "Noto Sans JP",sans-serif;background:var(--ink);color:var(--paper);padding:3px 10px;border-radius:99px;white-space:nowrap}
+.review .hardtag{font-size:12px;padding:1px 8px}
+.live{margin:14px 0 0;padding:10px 12px;background:var(--grid);border-radius:4px;font-weight:700}
+.share{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+.sh{min-height:48px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;text-decoration:none;border:0;padding:0 8px;text-align:center}
+.sh.x{background:#000;color:#fff}.sh.line{background:#06c755;color:#fff}.sh.copy{background:transparent;border:1.5px solid var(--ink)}
+:root[data-theme=dark] .sh.x{outline:1px solid #555}
+@media(max-width:420px){.share{grid-template-columns:minmax(0,1fr)}}
+footer{color:var(--sub);font-size:13px;text-align:center;margin-top:24px}
+@media(max-width:600px){.opts{grid-template-columns:minmax(0,1fr)}.col{grid-template-rows:auto 200px auto}.side{font-size:16px;padding:8px 4px}.col .nm{font-size:22px}}
+@media(prefers-reduced-motion:reduce){.fill,.avg,.side,.bar i{transition:none}}
+
+/* 背景：藍色の青海波 */
+body{background-color:#14213d;background-image:radial-gradient(circle at 100% 150%,#14213d 24%,#1d2f57 24%,#1d2f57 28%,#14213d 28%,#14213d 36%,#1d2f57 36%,#1d2f57 40%,transparent 40%),radial-gradient(circle at 0 150%,#14213d 24%,#1d2f57 24%,#1d2f57 28%,#14213d 28%,#14213d 36%,#1d2f57 36%,#1d2f57 40%,transparent 40%),radial-gradient(circle at 50% 100%,#1d2f57 10%,#14213d 10%,#14213d 23%,#1d2f57 23%,#1d2f57 30%,#14213d 30%,#14213d 43%,#1d2f57 43%,#1d2f57 50%,#14213d 50%,#14213d 63%,#1d2f57 63%,#1d2f57 71%,transparent 71%);background-size:64px 32px}
+footer{color:#c9d2e6}
+.sheet{box-shadow:0 20px 60px -20px rgba(0,0,0,.6);border-color:transparent}
+
+/* 読みやすさ：明朝体・大きめの文字・色分け */
+:root{--sub:light-dark(#3a3f45,#c4c8cd);--ink:light-dark(#111315,#f3f2ee);--key:light-dark(#9c1a1a,#ff8a7a)}
+body{font:500 18px/1.8 "Noto Serif JP","Zen Old Mincho",serif;letter-spacing:.02em}
+.sheet{background-image:none}
+.lead{font-size:clamp(17px,2.2vw,19px);color:var(--ink)}
+.rules{font-size:17px;color:var(--ink)}
+.rules li::marker{color:var(--key)}
+.rules li{margin:4px 0}
+.note,.meta,.status{font-size:15px;color:var(--sub)}
+.caveat{font-size:15px;color:var(--key);border-color:color-mix(in srgb,var(--key) 40%,transparent);background:color-mix(in srgb,var(--key) 6%,transparent)}
+.kicker{font-size:16px;color:var(--key);letter-spacing:.06em}
+.tabs a{font-size:16px;font-family:"Noto Serif JP",serif;font-weight:700}
+.qt{font-size:clamp(20px,3vw,25px);font-weight:700;line-height:1.7}
+.opt{font-size:19px;font-weight:700;font-family:"Noto Serif JP",serif}
+.fb{font-size:18px}.fb p{font-size:16px;color:var(--sub)}
+.review li{font-size:16px}.review small{font-size:15px;color:var(--sub)}
+.side span,.era,.hardtag,.cat{font-family:"Noto Sans JP",sans-serif}
+.era{font-size:14px;color:var(--sub);border-color:var(--sub)}
+.cat{font:700 14px "Noto Sans JP",sans-serif;padding:2px 10px;border-radius:99px;color:#fff;white-space:nowrap}
+.cat.culture{background:#2e7d4f}.cat.law{background:#6a3fa0}.cat.war{background:#8a1c1c}
+.hardtag{background:#c8102e;color:#fff}
+.win .big{font-family:"Zen Old Mincho",serif}
+.live{font-size:17px}
+.next,.ghost,.sh{font-family:"Noto Serif JP",serif;font-weight:700;font-size:18px}
+.preview{font-size:16px}
+@media(max-width:600px){body{font-size:17px}.tabs a{font-size:14px}.opt{font-size:18px}.rules{font-size:16px}}
+.hannichi{color:light-dark(#1e3a8a,#9fb8ff);font-weight:900;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px;text-decoration-color:light-dark(rgba(30,58,138,.25),rgba(159,184,255,.35))}
+.join{margin:18px 0 0;padding:12px 16px;border-radius:6px;background:light-dark(#14213d,#0d1528);color:#fff;font-weight:700;font-size:18px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
+.join b{font-family:"Zen Old Mincho",serif;font-size:clamp(30px,6vw,40px);line-height:1;color:#ffd166;margin:0 2px}
+.join span{font-size:15px;font-weight:500;color:#c9d2e6}
+#pRank .join{margin:0 0 16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<main class="sheet">
+
+<nav class="tabs" id="tabs" aria-label="ページ">
+  <a href="#home" data-p="home">ホーム</a><a href="#ranking" data-p="ranking">ランキング</a><a href="#test" data-p="test">テストを受ける</a><a href="#share" data-p="share">SNSでシェア</a>
+</nav>
+
+<section id="pHome" class="page">
+  <div class="head">
+    <div>
+      <p class="kicker">リベラル（左翼）VS保守（右翼） 日本史テスト</p>
+      <h1>本当の<em class="red">愛国者</em>は<br>どっちだ？</h1>
+      <p class="lead">日本を愛しているなら、日本の歴史も知っているはず。<strong class="hannichi">「反日」</strong>というレッテルではなく、点数で確かめよう。自分の立場を表明して、高校日本史（明治・大正・昭和）の10問に挑戦しよう。リベラル（左翼）と保守（右翼）、どちらの得点が高いかをランキングで比べます。</p>
+    </div>
+    <div class="stamp">全10問・四択・各30秒</div>
+  </div>
+
+  <p class="join" id="joinHome">参戦者を集計中…</p>
+  <div class="cta"><a class="next" href="#test">テストを受ける</a><a class="ghost" href="#ranking">ランキングを見る</a></div>
+  <h2 class="sub">テストのルール</h2>
+  <ul class="rules">
+    <li>1問10点、100点満点。明治・大正・昭和の問題から毎回ランダムに出題されます。</li>
+    <li>10問の中に、文化・法律・太平洋戦争の問題と、難問が1問ずつ入ります。</li>
+    <li>人物名・出来事名を問う問題のみで、年号は問いません。</li>
+    <li>1問の制限時間は30秒。時間切れは不正解になります。</li>
+    <li>もう一度受けると、あなたの記録は最新の結果に置き換わります。</li>
+  </ul>
+  <p class="caveat">※ 立場は参加者の自己申告です。結果は科学的な調査ではなく、あくまで参考値としてご覧ください。</p>
+</section>
+
+<section id="pRank" class="page hide">
+  <h2 class="ptitle">現在のランキング</h2>
+  <p class="join" id="joinRank">参戦者を集計中…</p>
+  <div class="win" id="win" aria-live="polite">
+    <div class="top"><span class="lab">中央値で</span><span class="big" id="winBig">集計中…</span><span class="diff" id="winDiff"></span></div>
+    <div class="split" id="split"><div class="none">集計中…</div></div>
+  </div>
+  <div class="board" aria-label="陣営別の得点の中央値">
+    <div class="col L"><div class="nm">リベラル<small class="tag">（左翼）</small><span class="crown hide" id="cL">首位</span></div><div class="tube"><div class="fill" id="fL"></div><div class="avg" id="aL">–</div></div><div class="meta" id="mL">集計中…</div></div>
+    <div class="col R"><div class="nm">保守<small class="tag">（右翼）</small><span class="crown hide" id="cR">首位</span></div><div class="tube"><div class="fill" id="fR"></div><div class="avg" id="aR">–</div></div><div class="meta" id="mR">集計中…</div></div>
+  </div>
+  <p class="caveat">※ 立場は参加者の自己申告です。結果は科学的な調査ではなく、あくまで参考値としてご覧ください。</p>
+  <p class="note" id="dbNote">各陣営の得点の中央値（真ん中の人の点数）で比べています。全受験者それぞれの最新の結果を1人1票で集計し、約10秒ごとに自動で更新されます。</p>
+
+  <div class="cta"><a class="next" href="#test">テストを受けて参戦する</a></div>
+</section>
+
+<section id="vPick" class="page hide">
+  <h2 class="ptitle">あなたはどちらですか？</h2>
+  <p class="lead">自分の立場を選ぶと、すぐにテストが始まります（全10問・各30秒）。</p>
+  <div class="pick">
+    <button class="side L" data-side="left">リベラル（左翼）<span>の立場で受験する</span></button>
+    <button class="side R" data-side="right">保守（右翼）<span>の立場で受験する</span></button>
+  </div>
+  <p class="caveat">※ 立場は参加者の自己申告です。</p>
+</section>
+
+<section id="pShare" class="page hide">
+  <h2 class="ptitle">SNSでシェア</h2>
+  <p class="lead" id="pShareLead">このテストを友だちに広めよう。下のボタンを押すだけで投稿画面が開きます。</p>
+  <div class="preview" id="pShareText"></div>
+  <div class="share">
+    <a class="sh x" id="psX" href="#" target="_blank" rel="noopener">Xでシェア</a>
+    <a class="sh line" id="psLine" href="#" target="_blank" rel="noopener">LINEで送る</a>
+    <button class="sh copy" id="psCopy">文章とURLをコピー</button>
+  </div>
+</section>
+
+<section id="vQuiz" class="page hide">
+  <div class="qno"><span id="qNo">第1問</span><span class="tm"><span class="hardtag hide" id="qHard">難問</span><span class="cat hide" id="qCat"></span><span class="era" id="qEra"></span><span class="sec" id="qSec">30</span></span></div>
+  <div class="bar"><i id="qBar" style="width:0"></i></div>
+  <div class="tbar"><i id="qT"></i></div>
+  <p class="qt" id="qText"></p>
+  <div class="opts" id="qOpts"></div>
+  <div class="fb" id="qFb" aria-live="polite"></div>
+  <button class="next hide" id="qNext">次の問題へ</button>
+</section>
+
+<section id="vResult" class="page hide">
+  <div class="head"><h2 id="rTitle">結果</h2><div class="stamp" id="rSide"></div></div>
+  <div class="score"><b id="rScore">0</b><span id="rMsg"></span></div>
+  <p class="status" id="rStatus"></p>
+  <p class="live" id="rLive" aria-live="polite"></p>
+  <div class="share">
+    <a class="sh x" id="shX" href="#" target="_blank" rel="noopener">Xでシェア</a>
+    <a class="sh line" id="shLine" href="#" target="_blank" rel="noopener">LINEで送る</a>
+    <button class="sh copy" id="shCopy">結果をコピー</button>
+  </div>
+  <p class="caveat">※ 立場は参加者の自己申告による参考値です。</p>
+  <div class="row"><a class="next" href="#ranking" style="margin:0;flex:1 1 220px">ランキングを見る</a><button class="ghost" id="rAgain">もう一度受ける</button></div>
+  <ol class="review" id="rReview"></ol>
+</section>
+
+</main>
+<footer>問題は高校日本史の範囲から作成しています。点数は知識の目安であり、思想の優劣を示すものではありません。</footer>
+</div>
+
+<script>
+{
+const Q=[
+// [時代, 問題, 正解, 誤答1, 誤答2, 誤答3, 解説]
+["明治","明治政府が藩を廃止し、府と県を置いて中央集権を進めた改革は何か。","廃藩置県","版籍奉還","地租改正","学制","府知事・県令は中央から派遣された。",0,"gen"],
+["明治","土地の所有者に地価の3％を現金で納めさせた税制の改革は何か。","地租改正","秩禄処分","徴兵令","殖産興業","政府の財源が安定した一方、各地で反対一揆も起きた。",0,"law"],
+["明治","西郷隆盛を中心とする鹿児島の士族が起こした、最大にして最後の士族反乱は何か。","西南戦争","佐賀の乱","萩の乱","戊辰戦争","徴兵制による政府軍が鎮圧した。",0,"gen"],
+["明治","民撰議院設立の建白書を提出した中心人物で、自由民権運動を主導したのは誰か。","板垣退助","大隈重信","伊藤博文","山県有朋","のちに自由党を結成した。",0,"gen"],
+["明治","初代の内閣総理大臣に就任した人物は誰か。","伊藤博文","黒田清隆","山県有朋","松方正義","内閣制度の創設とともに就任した。",0,"gen"],
+["明治","日清戦争の講和条約は何か。","下関条約","ポーツマス条約","天津条約","日朝修好条規","清は朝鮮の独立を認め、遼東半島・台湾などを日本に割譲した。",0,"gen"],
+["明治","日清戦争後、ロシア・フランス・ドイツが日本に遼東半島の返還を求めた出来事は何か。","三国干渉","義和団事件","甲申事変","大津事件","日本国内では「臥薪嘗胆」が唱えられた。",0,"gen"],
+["明治","外務大臣として領事裁判権（治外法権）の撤廃に成功した人物は誰か。","陸奥宗光","小村寿太郎","大隈重信","井上馨","日英通商航海条約で実現した。",0,"gen"],
+["明治","日露戦争の講和会議に日本全権として出席し、ポーツマス条約に調印した外務大臣は誰か。","小村寿太郎","陸奥宗光","幣原喜重郎","井上馨","のちに関税自主権の回復も実現した。",0,"gen"],
+["明治","日露戦争の日本海海戦で、連合艦隊を率いてバルチック艦隊を破った司令長官は誰か。","東郷平八郎","山本五十六","乃木希典","大山巌","日露戦争の戦局を決定づけた海戦の一つ。",0,"gen"],
+["明治","日露戦争の講和内容に不満を持った民衆が、東京で起こした暴動は何か。","日比谷焼打ち事件","米騒動","秩父事件","大逆事件","賠償金が得られなかったことへの不満が背景にある。",0,"gen"],
+["明治","ロシアの南下に対抗するため、日本がイギリスと結んだ同盟は何か。","日英同盟","日露協約","日仏協約","日独伊三国同盟","日露戦争の前に結ばれた。",0,"gen"],
+["明治","日露戦争に出征した弟を思い、「君死にたまふことなかれ」を発表した歌人は誰か。","与謝野晶子","樋口一葉","平塚らいてう","津田梅子","雑誌『明星』で活躍した。",0,"culture"],
+["明治","岩倉使節団とともにアメリカへ留学し、のちに女子英学塾を創設した人物は誰か。","津田梅子","樋口一葉","平塚らいてう","市川房枝","女子英学塾は津田塾大学の前身。",0,"culture"],
+["明治","『学問のすゝめ』を著し、慶應義塾を創設した啓蒙思想家は誰か。","福沢諭吉","新渡戸稲造","中江兆民","内村鑑三","「天は人の上に人を造らず」で知られる。",0,"culture"],
+["明治","足尾銅山の鉱毒問題を議会で追及し、天皇への直訴を試みた衆議院議員は誰か。","田中正造","幸徳秋水","片山潜","植木枝盛","日本の公害問題の原点とされる。",0,"gen"],
+["明治","天皇の暗殺を計画したとして多くの社会主義者・無政府主義者が検挙され、幸徳秋水らが処刑された事件は何か。","大逆事件","大津事件","虎の門事件","シーメンス事件","その後、社会主義運動は「冬の時代」に入った。",0,"gen"],
+["大正","雑誌『青鞜』を創刊し、「元始、女性は実に太陽であった」と記した人物は誰か。","平塚らいてう","市川房枝","与謝野晶子","樋口一葉","のちに新婦人協会を設立した。",0,"culture"],
+["大正","米価の急騰をきっかけに、富山県から全国に広がった民衆の騒動は何か。","米騒動","日比谷焼打ち事件","打ちこわし","秩父事件","寺内正毅内閣はこの責任をとって総辞職した。",0,"gen"],
+["大正","衆議院の第一党の総裁として、初の本格的な政党内閣を組織した「平民宰相」は誰か。","原敬","加藤高明","桂太郎","犬養毅","立憲政友会の総裁だった。",0,"gen"],
+["大正","「民本主義」を唱え、大正デモクラシーの理論的支柱となった政治学者は誰か。","吉野作造","美濃部達吉","中江兆民","福沢諭吉","政治の目的は民衆の利益と幸福にあると説いた。",0,"gen"],
+["大正","加藤高明内閣のもとで成立し、満25歳以上のすべての男性に衆議院議員の選挙権を与えた法律は何か。","普通選挙法","治安維持法","治安警察法","国家総動員法","同じ時期に治安維持法も制定された。",0,"law"],
+["昭和戦前","「天皇機関説」を唱え、のちに貴族院で問題とされて著書が発禁となった憲法学者は誰か。","美濃部達吉","吉野作造","上杉慎吉","穂積八束","政府は国体明徴声明を出した。",0,"law"],
+["昭和戦前","柳条湖で南満州鉄道の線路が爆破されたことをきっかけに始まった、関東軍の軍事行動は何か。","満州事変","盧溝橋事件","張作霖爆殺事件","済南事件","翌年、満州国が建国された。",0,"gen"],
+["昭和戦前","海軍の青年将校らが首相官邸を襲い、犬養毅首相を殺害した事件は何か。","五・一五事件","二・二六事件","血盟団事件","虎の門事件","これにより戦前の政党内閣は途絶えた。",0,"gen"],
+["昭和戦前","陸軍の青年将校らが部隊を率いて首相官邸などを襲撃し、高橋是清蔵相らを殺害した事件は何か。","二・二六事件","五・一五事件","三月事件","血盟団事件","戒厳令が出され、反乱は鎮圧された。",0,"gen"],
+["昭和戦前","北京郊外で日中両軍が衝突し、日中戦争の発端となった事件は何か。","盧溝橋事件","柳条湖事件","西安事件","義和団事件","戦線はその後、中国各地に拡大した。",0,"gen"],
+["昭和戦前","日中戦争下、政府が議会の承認なしに人や物資を戦争に動員できるようにした法律は何か。","国家総動員法","治安維持法","普通選挙法","治安警察法","第1次近衛文麿内閣のもとで制定された。",0,"law"],
+["昭和戦前","太平洋戦争の開戦時、日本海軍がハワイのアメリカ海軍基地を奇襲した作戦は何か。","真珠湾攻撃","ミッドウェー海戦","レイテ沖海戦","日本海海戦","同じ日に陸軍はマレー半島に上陸した。",0,"war"],
+["昭和戦前","日本海軍が主力空母4隻を失い、太平洋戦争の戦局の転換点となった海戦は何か。","ミッドウェー海戦","真珠湾攻撃","レイテ沖海戦","黄海海戦","以後、日本は守勢に回った。",0,"war"],
+["昭和戦前","日本軍の無条件降伏などを求め、日本が受諾して終戦に至った連合国の宣言は何か。","ポツダム宣言","カイロ宣言","ヤルタ協定","大西洋憲章","アメリカ・イギリス・中国の名で発表された。",0,"war"],
+["明治","征韓論をめぐる対立から、西郷隆盛・板垣退助らが一斉に政府を去った政変は何か。","明治六年の政変","明治十四年の政変","甲申事変","壬午軍乱","岩倉使節団の帰国後、内治優先派と対立した。",0,"gen"],
+["明治","開拓使官有物払下げ事件を機に、国会の早期開設を主張していた参議が政府から追放された。この人物は誰か。","大隈重信","板垣退助","黒田清隆","井上馨","明治十四年の政変。同時に国会開設の勅諭が出された。",0,"gen"],
+["明治","西南戦争後のインフレを抑えるため、緊縮財政と紙幣整理を進めた大蔵卿は誰か。","松方正義","大隈重信","井上準之助","高橋是清","日本銀行を設立した一方、深刻なデフレを招いた。",0,"gen"],
+["明治","松方財政下のデフレで困窮した埼玉県の農民らが困民党を組織して蜂起した事件は何か。","秩父事件","福島事件","加波山事件","大阪事件","自由党員も参加した激化事件の一つ。",0,"gen"],
+["明治","大日本帝国憲法の草案作成にあたり、伊藤博文らに助言したドイツ人の法律顧問は誰か。","ロエスレル","ボアソナード","フェノロサ","モース","ボアソナードはフランス人で、刑法・民法の起草に関わった。",0,"gen"],
+["明治","ボアソナードらが起草した民法の施行をめぐり、「民法出でて忠孝亡ぶ」などの批判が起きた論争は何か。","民法典論争","国体明徴運動","内地雑居論争","征韓論争","民法は施行延期となり、のちに家制度を重んじる内容で公布された。",0,"law"],
+["明治","来日中のロシア皇太子が警備の巡査に斬りつけられた大津事件で、政府の圧力に抗し司法権の独立を守ったとされる大審院長は誰か。","児島惟謙","江藤新平","大木喬任","穂積陳重","政府は犯人の死刑を求めたが、通常の刑法が適用された。",0,"gen"],
+["明治","フランスの技術を導入して群馬県に設立された官営模範工場は何か。","富岡製糸場","八幡製鉄所","大阪紡績会社","長崎造船所","殖産興業政策の代表例。",0,"gen"],
+["大正","「閥族打破・憲政擁護」を掲げた第一次護憲運動によって退陣に追い込まれた首相は誰か。","桂太郎","西園寺公望","山本権兵衛","寺内正毅","この出来事を大正政変という。",0,"gen"],
+["大正","第一次世界大戦中、日本が中国の袁世凱政府に山東省のドイツ権益の継承などを求めたものは何か。","二十一カ条の要求","石井・ランシング協定","西原借款","九カ国条約","第2次大隈重信内閣が提出した。",0,"gen"],
+["大正","外務大臣として、英米との協調と中国への内政不干渉を基本とする「協調外交」を進めた人物は誰か。","幣原喜重郎","田中義一","松岡洋右","広田弘毅","憲政会・立憲民政党の内閣で外相を務めた。",0,"gen"],
+["昭和戦前","ロンドン海軍軍縮条約の調印をめぐり「統帥権の干犯」と批判され、のちに東京駅で狙撃された首相は誰か。","浜口雄幸","若槻礼次郎","田中義一","加藤友三郎","立憲民政党の総裁だった。",0,"gen"],
+["昭和戦前","浜口内閣の大蔵大臣として金解禁を断行したが、昭和恐慌を深刻化させたとされる人物は誰か。","井上準之助","高橋是清","松方正義","浜口雄幸","のちに血盟団事件で暗殺された。",0,"gen"],
+["昭和戦前","犬養毅内閣の大蔵大臣として金輸出を再禁止し、恐慌からの脱出を図った人物は誰か。","高橋是清","井上準之助","松方正義","渋沢栄一","積極財政で景気は回復に向かった。",0,"gen"],
+["昭和戦前","国際連盟の総会でリットン報告書にもとづく勧告が採択された際、日本全権として退場した人物は誰か。","松岡洋右","幣原喜重郎","石原莞爾","近衛文麿","日本はその後、国際連盟脱退を通告した。",0,"gen"],
+["昭和戦前","近衛文麿を中心とする新体制運動の中で結成され、多くの政党が解散して合流した組織は何か。","大政翼賛会","産業報国会","立憲政友会","協調会","部落会・町内会・隣組などを下部組織とした。",0,"gen"],
+["昭和戦後","GHQのマッカーサーから、女性参政権の付与などを含む五大改革の指令を受けた首相は誰か。","幣原喜重郎","東久邇宮稔彦","吉田茂","片山哲","戦後改革が本格的に始まった。",0,"gen"],
+["昭和戦後","日本国憲法の施行後、日本社会党の委員長として連立内閣を組織した首相は誰か。","片山哲","芦田均","浅沼稲次郎","鈴木茂三郎","民主党・国民協同党と連立した。",0,"gen"],
+["昭和戦後","占領期の日本で、連合国軍最高司令官として占領政策を指揮した人物は誰か。","マッカーサー","トルーマン","ダレス","ローズヴェルト","GHQの最高司令官を務めた。",0,"gen"],
+["昭和戦後","GHQの指示により、地主の土地を政府が買い上げて小作人に安く売り渡した改革は何か。","農地改革","財閥解体","地租改正","太閤検地","多くの自作農が生まれた。",0,"gen"],
+["昭和戦後","サンフランシスコ平和条約に日本の首席全権として調印した首相は誰か。","吉田茂","鳩山一郎","岸信介","幣原喜重郎","同じ日に日米安全保障条約にも調印した。",0,"gen"],
+["昭和戦後","日ソ共同宣言に調印し、その結果日本の国際連合加盟が実現したときの首相は誰か。","鳩山一郎","吉田茂","石橋湛山","岸信介","ソ連との国交が回復した。",0,"gen"],
+["昭和戦後","日米安全保障条約の改定に反対して起こった、大規模な国民的運動は何か。","安保闘争","米騒動","護憲運動","自由民権運動","新条約の成立後、岸信介内閣は総辞職した。",0,"gen"],
+["昭和戦後","「所得倍増計画」を掲げ、高度経済成長を推進した首相は誰か。","池田勇人","佐藤栄作","田中角栄","岸信介","「寛容と忍耐」を掲げた。",0,"gen"],
+["昭和戦後","東京オリンピックの開幕直前に開業した、東京と新大阪を結ぶ高速鉄道は何か。","東海道新幹線","山陽新幹線","東北新幹線","上越新幹線","高度経済成長の象徴とされる。",0,"gen"],
+["昭和戦後","アメリカとの交渉により、沖縄の日本復帰を実現した首相は誰か。","佐藤栄作","田中角栄","池田勇人","中曽根康弘","非核三原則を表明したことでも知られる。",0,"gen"],
+["昭和戦後","日中共同声明に調印し、中華人民共和国との国交正常化を実現した首相は誰か。","田中角栄","福田赳夫","大平正芳","佐藤栄作","のちに福田赳夫内閣で日中平和友好条約が結ばれた。",0,"gen"],
+["明治","『吾輩は猫である』『こゝろ』などを著した作家は誰か。","夏目漱石","森鷗外","芥川龍之介","島崎藤村","英文学者でもあり、近代日本文学を代表する作家の一人。",0,"culture"],
+["明治","ドイツ留学の体験をもとに『舞姫』を著し、陸軍軍医としても活躍した作家は誰か。","森鷗外","夏目漱石","二葉亭四迷","坪内逍遙","のちに歴史小説『阿部一族』なども著した。",0,"culture"],
+["明治","『小説神髄』を著し、人間の心理をありのままに描く写実主義を提唱した人物は誰か。","坪内逍遙","二葉亭四迷","尾崎紅葉","正岡子規","二葉亭四迷は言文一致体の『浮雲』でこれを実践した。",0,"culture"],
+["明治","破傷風菌の純粋培養に成功し、血清療法を確立した細菌学者は誰か。","北里柴三郎","野口英世","志賀潔","高峰譲吉","のちに伝染病研究所を設立した。",0,"culture"],
+["明治","岡倉天心とともに日本の伝統美術の復興に努めた、アメリカ人の哲学者は誰か。","フェノロサ","コンドル","モース","ベルツ","東京美術学校の設立に関わった。",0,"culture"],
+["大正","『羅生門』『鼻』などを著し、夏目漱石に認められた作家は誰か。","芥川龍之介","志賀直哉","菊池寛","谷崎潤一郎","のちに菊池寛が彼の名を冠した文学賞を創設した。",0,"culture"],
+["昭和戦前","『蟹工船』を著した、プロレタリア文学を代表する作家は誰か。","小林多喜二","徳永直","葉山嘉樹","宮本百合子","特高警察による取り調べ中に死亡した。",0,"culture"],
+["昭和戦後","中間子の存在を予言し、日本人として初めてノーベル賞を受賞した物理学者は誰か。","湯川秀樹","朝永振一郎","川端康成","野口英世","占領下の日本の人々を大いに励ました。",0,"culture"],
+["明治","自由民権運動を取り締まるため、民権派の人々を皇居から三里の外へ退去させた法令は何か。","保安条例","讒謗律","集会条例","治安警察法","第1次伊藤博文内閣のもとで出された。",0,"law"],
+["明治","大日本帝国憲法で、陸海軍を指揮する権限（統帥権）を持つとされたのは誰か。","天皇","内閣総理大臣","陸軍大臣","枢密院","統帥権は内閣から独立しているとされた。",0,"law"],
+["明治","年少者や女性の長時間労働・深夜業を制限した、日本で最初の労働者保護法は何か。","工場法","労働基準法","労働組合法","治安警察法","適用範囲は小規模工場を除くなど限定的だった。",0,"law"],
+["大正","「国体」の変革や私有財産制度の否認を目的とする結社を取り締まるために制定された法律は何か。","治安維持法","治安警察法","保安条例","新聞紙条例","普通選挙法と同じ時期に制定され、のちに最高刑が死刑に引き上げられた。",0,"law"],
+["昭和戦後","労働者の団結権・団体交渉権・争議権を保障した法律は何か。","労働組合法","労働基準法","工場法","治安警察法","労働基準法・労働関係調整法とあわせて労働三法と呼ばれる。",0,"law"],
+["昭和戦後","日本国憲法で、天皇の地位は日本国と日本国民統合の何であると定められたか。","象徴","元首","統治権の総攬者","主権者","主権は国民にあると定められた。",0,"law"],
+["昭和戦後","教育勅語に代わり、教育の機会均等や男女共学などの理念を定めた法律は何か。","教育基本法","学制","教育令","国民学校令","同時に学校教育法で6・3・3・4制が定められた。",0,"law"],
+["昭和戦前","太平洋戦争が始まったときの首相は誰か。","東条英機","近衛文麿","小磯国昭","鈴木貫太郎","陸軍大臣・内務大臣も兼任した。",0,"war"],
+["昭和戦前","日米交渉の最終段階でアメリカが示し、中国・仏印からの全面撤兵などを求めた提案は何か。","ハル・ノート","大西洋憲章","カイロ宣言","ポツダム宣言","日本政府はこれを最後通牒とみなし、開戦を決定した。",0,"war"],
+["昭和戦前","インド北東部の攻略をめざしたが、補給を欠いて多数の犠牲者を出し失敗した作戦は何か。","インパール作戦","ガダルカナル島の戦い","レイテ沖海戦","マレー作戦","ビルマ方面での作戦だった。",0,"war"],
+["昭和戦前","日本国内で一般住民を巻き込んだ最大の地上戦となり、多くの犠牲者を出した戦いは何か。","沖縄戦","硫黄島の戦い","ガダルカナル島の戦い","サイパン島の戦い","男子学徒や女子学徒も動員された。",0,"war"],
+["昭和戦前","空襲を避けるため、都市部の国民学校の児童を地方の農村などに集団で移したことを何というか。","学童疎開","勤労動員","学徒出陣","徴用","親元を離れ、寺や旅館などで集団生活を送った。",0,"war"],
+["昭和戦前","戦局の悪化により、それまで徴兵が猶予されていた文科系の学生らを軍に入隊させたことを何というか。","学徒出陣","学童疎開","勤労動員","徴用","明治神宮外苑競技場で壮行会が開かれた。",0,"war"],
+["昭和戦前","ポツダム宣言の受諾を決め、終戦を迎えたときの首相は誰か。","鈴木貫太郎","東条英機","小磯国昭","東久邇宮稔彦","終戦後に総辞職し、東久邇宮内閣が成立した。",0,"war"],
+// 難問（各回1問だけ出題）
+["明治","華族・士族に支給していた家禄を、金禄公債証書を交付して全廃した措置は何か。","秩禄処分","版籍奉還","廃刀令","地租改正","士族の不満が高まり、各地の士族反乱につながった。",1,"gen"],
+["明治","自由党の急進派が栃木県令三島通庸の暗殺を計画し、茨城県の山で蜂起した事件は何か。","加波山事件","福島事件","秩父事件","高田事件","自由民権運動の激化事件の一つで、自由党解党の一因となった。",1,"gen"],
+["明治","初期議会で「民力休養・政費節減」を掲げ、政府の予算案に反対した政党勢力を何と呼ぶか。","民党","吏党","超然主義","大同団結","政府寄りの勢力は吏党と呼ばれた。",1,"gen"],
+["明治","日露戦争後、桂太郎と西園寺公望が交互に首相を務めた時期を何と呼ぶか。","桂園時代","憲政の常道","隈板内閣","挙国一致内閣","藩閥・官僚勢力と立憲政友会が政権を分け合った。",1,"gen"],
+["大正","貴族院を基盤に組閣し、第二次護憲運動によって総辞職に追い込まれた内閣の首相は誰か。","清浦奎吾","加藤友三郎","山本権兵衛","高橋是清","その後、護憲三派の加藤高明内閣が成立した。",1,"gen"],
+["昭和戦前","金融恐慌のさなか、台湾銀行を救済する緊急勅令案が枢密院で否決され、総辞職した内閣の首相は誰か。","若槻礼次郎","田中義一","浜口雄幸","加藤高明","第1次若槻内閣。後継の田中義一内閣が収拾にあたった。",1,"gen"],
+["昭和戦前","金融恐慌に際し、モラトリアム（支払猶予令）を出して混乱を収めた田中義一内閣の大蔵大臣は誰か。","高橋是清","井上準之助","片岡直温","三土忠造","日本銀行からの巨額の非常貸出も行われた。",1,"gen"],
+["昭和戦前","日中戦争中に「国民政府を対手とせず」と声明し、和平交渉の道を自ら閉ざした首相は誰か。","近衛文麿","広田弘毅","平沼騏一郎","林銑十郎","のちに「東亜新秩序」の建設を掲げた。",1,"gen"],
+["昭和戦前","独ソ不可侵条約の締結に衝撃を受け、「欧州の天地は複雑怪奇」と述べて総辞職した首相は誰か。","平沼騏一郎","阿部信行","米内光政","近衛文麿","日独防共協定の強化交渉が行き詰まった。",1,"gen"],
+["昭和戦後","経済安定九原則の実施のため来日し、赤字を許さない超均衡予算などを求めたアメリカの銀行家は誰か。","ドッジ","シャウプ","ダレス","ケナン","インフレは収束したが、深刻な不況（安定恐慌）を招いた。",1,"gen"],
+["昭和戦後","日本の税制について勧告を行い、直接税中心の税制への改革を提言した使節団の団長は誰か。","シャウプ","ドッジ","ダレス","リッジウェイ","所得税中心の戦後税制の基礎となった。",1,"gen"]
+];
+const N=10,K=["ア","イ","ウ","エ"],SIDE={left:"リベラル（左翼）",right:"保守（右翼）"};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const LIMIT=30;let tm=null,t0=0;
+let st={side:null,set:[],i:0,ans:[]},rows=[],localMine=null;
+
+let testView="vPick";
+const PAGES={home:"pHome",ranking:"pRank",share:"pShare"};
+function route(){
+  let name=(location.hash||"#home").slice(1);if(!(name in PAGES)&&name!=="test")name="home";
+  if(name!=="test"&&testView==="vQuiz"){clearInterval(tm);testView="vPick"} // テスト中に離れたら中断
+  const id=name==="test"?testView:PAGES[name];
+  for(const el of document.querySelectorAll(".page"))el.classList.toggle("hide",el.id!==id);
+  for(const a of document.querySelectorAll(".tabs a"))a.toggleAttribute("aria-current",a.dataset.p===name),a.dataset.p===name&&a.setAttribute("aria-current","page");
+  $("tabs").classList.toggle("hide",id==="vQuiz");
+  if(name==="ranking")drawBoard();
+  if(name==="share")updateShare();
+  window.scrollTo({top:0});
+}
+function show(v){testView=v;if(location.hash!=="#test")location.hash="test";else route()}
+
+function build(){
+  // 構成：文化1・法律1・太平洋戦争1・難問1・その他6
+  const pick=(f)=>shuf(Q.filter(f));
+  const set=[pick(q=>!q[7]&&q[8]==="culture")[0],pick(q=>!q[7]&&q[8]==="law")[0],pick(q=>!q[7]&&q[8]==="war")[0],...pick(q=>!q[7]&&q[8]==="gen").slice(0,N-4)];
+  const out=shuf(set),pos=Math.floor(N/2)+Math.floor(Math.random()*(N/2));
+  out.splice(pos,0,pick(q=>q[7])[0]); // 難問は後半のどこかに1問
+  return out.map(q=>({era:q[0],t:q[1],a:q[2],opts:shuf([q[2],q[3],q[4],q[5]]),note:q[6],hard:!!q[7],cat:q[8]}));
+}
+function start(side){st={side,set:build(),i:0,ans:[]};show("vQuiz");renderQ()}
+window.addEventListener("hashchange",route);
+function renderQ(){
+  const q=st.set[st.i];
+  $("qNo").textContent="第"+(st.i+1)+"問 / "+N;$("qEra").textContent=q.era;$("qHard").classList.toggle("hide",!q.hard);$("qEra").textContent=q.era;const ct=$("qCat"),cn={culture:"文化",law:"法律",war:"太平洋戦争"}[q.cat];ct.textContent=cn||"";ct.className="cat "+(q.cat||"")+(cn?"":" hide");
+  $("qBar").style.width=(st.i/N*100)+"%";$("qText").textContent=q.t;
+  $("qOpts").innerHTML=q.opts.map((o,k)=>`<button class="opt" data-k="${K[k]}" data-v="${esc(o)}">${esc(o)}</button>`).join("");
+  $("qFb").innerHTML="";$("qNext").classList.add("hide");
+  clearInterval(tm);t0=performance.now();tick();tm=setInterval(tick,100);
+  if(document.activeElement)document.activeElement.blur();
+}
+function tick(){
+  const left=Math.max(0,LIMIT-(performance.now()-t0)/1000),w=left<=5;
+  $("qSec").textContent=Math.ceil(left);$("qSec").classList.toggle("warn",w);
+  const bar=$("qT");bar.style.transform=`scaleX(${left/LIMIT})`;bar.classList.toggle("warn",w);
+  if(left<=0)answer(null);
+}
+function answer(btn){
+  clearInterval(tm);if(st.ans.length>st.i)return;
+  const q=st.set[st.i],v=btn?btn.dataset.v:null,ok=v===q.a;
+  st.ans.push({q,v,ok});
+  for(const b of $("qOpts").children){b.disabled=true;if(b.dataset.v===q.a)b.classList.add("ok");else if(b===btn)b.classList.add("ng")}
+  $("qFb").innerHTML=(ok?`<span class="o">正解！</span>`:`<span class="x">${btn?"不正解。":"時間切れ！"}</span>正解は「${esc(q.a)}」`)+`<p>${esc(q.note)}</p>`;
+  const nx=$("qNext");nx.textContent=st.i===N-1?"結果を見る":"次の問題へ";nx.classList.remove("hide");nx.focus({preventScroll:true});
+}
+function next(){clearInterval(tm);st.i++;if(st.i<N)renderQ();else finish()}
+
+async function finish(){
+  $("qBar").style.width="100%";
+  const score=st.ans.filter(a=>a.ok).length*10,side=st.side;
+  $("rSide").textContent=SIDE[side]+"として受験";$("rScore").textContent=score;
+  $("rMsg").textContent=score===100?"満点です。":score>=80?"よく知っています。":score>=50?"まずまずの成績です。":"復習してもう一度どうぞ。";
+  $("rReview").innerHTML=st.ans.map((a,i)=>`<li><span class="m ${a.ok?"o":"x"}">${a.ok?"○":"×"}</span><div>${i+1}. ${a.q.hard?"<b class=\"hardtag\">難問</b> ":""}${esc(a.q.t)}<small>正解：${esc(a.q.a)}${a.ok?"":"　あなたの回答："+(a.v==null?"時間切れ":esc(a.v))}</small></div></li>`).join("");
+  show("vResult");
+  localMine={side,score};updateShare();drawBoard();
+  try{localStorage.setItem("jh-last",JSON.stringify(localMine))}catch(e){}
+  const s=$("rStatus");
+  s.textContent="総合ランキングに記録しています…";
+  try{
+    const r=await rpc("submit_result",{p_device:deviceId(),p_side:side,p_score:score});
+    s.textContent=r==="ok"?"総合ランキングに記録しました。":r==="too_soon"?"短時間に続けて受験したため、今回の結果は記録されませんでした（1分ほど空けてください）。":"今回の結果は記録されませんでした。";
+    loadStats();
+  }catch(e){s.textContent="記録に失敗しました。時間をおいてもう一度受けてください。"}
+}
+
+const median=xs=>{if(!xs.length)return null;const v=xs.slice().sort((p,q)=>p-q),m=v.length>>1;return v.length%2?v[m]:(v[m-1]+v[m])/2};
+const fmt=v=>Number.isInteger(v)?String(v):v.toFixed(1);
+let cnt={left:0,right:0},av={left:null,right:null},stats={};
+function drawBoard(){
+  for(const [k,c] of [["left","L"],["right","R"]]){
+    const g=stats[k]||{n:0},n=Number(g.n)||0,v=n?Number(g.median):null;av[k]=v;const h=Math.min(100,Math.max(0,v||0));
+    $("f"+c).style.height=h+"%";
+    const el=$("a"+c);el.innerHTML=n?`${fmt(v)}<small>点</small>`:"–";
+    el.style.bottom=`max(8px, calc(${h}% - 0.9em))`;
+    cnt[k]=n;
+    $("m"+c).textContent=n?`中央値・受験者 ${n.toLocaleString()}人・最高 ${Number(g.top)}点`:"まだ受験者がいません";
+  }
+  const W=$("win"),big=$("winBig"),df=$("winDiff"),sp=$("split");
+  let lead=null,txt,dtxt="";
+  if(av.left==null&&av.right==null){txt="まだ受験者がいません";}
+  else if(av.left==null||av.right==null){lead=av.left==null?"right":"left";txt=SIDE[lead]+"が暫定リード";dtxt=(lead==="left"?"保守":"リベラル")+"の受験者はまだ0人";}
+  else{const d=av.left-av.right;if(Math.abs(d)<0.05)txt="両陣営が同点";else{lead=d>0?"left":"right";txt=SIDE[lead]+"の勝ち";dtxt=fmt(Math.abs(d))+"点差（リベラル "+fmt(av.left)+"点 対 保守 "+fmt(av.right)+"点）";}}
+  big.textContent=txt;df.textContent=dtxt;
+  W.className="win"+(lead==="left"?" L":lead==="right"?" R":"");
+  $("cL").classList.toggle("hide",lead!=="left");$("cR").classList.toggle("hide",lead!=="right");
+  const l=av.left||0,r=av.right||0;
+  sp.innerHTML=(l+r)?`<div class="sl" style="flex-grow:${l||0.001}">リベラル ${av.left==null?"–":fmt(l)}</div><div class="sr" style="flex-grow:${r||0.001}">${av.right==null?"–":fmt(r)} 保守</div>`:`<div class="none">中央値の比較はここに表示されます</div>`;
+  $("rLive").textContent="現在の戦況："+txt+(dtxt?"（"+dtxt+"）":"");
+  const tot=cnt.left+cnt.right;
+  for(const id of ["joinHome","joinRank"]){const el=$(id);if(!el)continue;
+    el.innerHTML=tot?`現在 <b>${tot.toLocaleString()}</b>人が参戦中<span>リベラル ${cnt.left.toLocaleString()}人 ・ 保守 ${cnt.right.toLocaleString()}人</span>`:"まだ参戦者がいません。最初の1人になろう！"}
+  updateShare();
+}
+const SITE=location.origin+location.pathname;
+function shareText(){
+  if(!localMine)return "";
+  const me=SIDE[localMine.side];
+  const now=(av.left==null&&av.right==null)?"":`現在の中央値は リベラル${av.left==null?"–":fmt(av.left)}点 vs 保守${av.right==null?"–":fmt(av.right)}点。`;
+  return `${me}として日本史テストに挑戦し、${localMine.score}点でした！${now}本当の愛国者はどっち？ #本当の愛国者はどっち`;
+}
+function siteText(){
+  const now=(av.left==null&&av.right==null)?"":`現在の中央値は リベラル${av.left==null?"–":fmt(av.left)}点 vs 保守${av.right==null?"–":fmt(av.right)}点。`;
+  const j=cnt.left+cnt.right?`現在${(cnt.left+cnt.right).toLocaleString()}人が参戦中！`:"";
+  return `本当の愛国者はどっち？ リベラル（左翼）VS保守（右翼）の日本史テスト。${j}${now}あなたも参戦しよう！ #本当の愛国者はどっち`;
+}
+function updateShare(){
+  const st2=localMine?shareText():siteText();
+  $("pShareText").textContent=st2+"\n"+SITE;
+  $("pShareLead").textContent=localMine?"あなたの最新の結果をシェアできます。下のボタンを押すだけで投稿画面が開きます。":"このテストを友だちに広めよう。下のボタンを押すだけで投稿画面が開きます。";
+  $("psX").href="https://x.com/intent/post?text="+encodeURIComponent(st2)+"&url="+encodeURIComponent(SITE);
+  $("psLine").href="https://social-plugins.line.me/lineit/share?url="+encodeURIComponent(SITE)+"&text="+encodeURIComponent(st2);
+  const t=shareText();if(!t)return;
+  $("shX").href="https://x.com/intent/post?text="+encodeURIComponent(t)+"&url="+encodeURIComponent(SITE);
+  $("shLine").href="https://social-plugins.line.me/lineit/share?url="+encodeURIComponent(SITE)+"&text="+encodeURIComponent(t);
+}
+async function copyShare(btn,page){
+  const t=(page&&!localMine?siteText():shareText())+"\n"+SITE;const label=btn.textContent;
+  try{await navigator.clipboard.writeText(t);btn.textContent="コピーしました"}
+  catch(e){btn.textContent="コピーできませんでした"}
+  setTimeout(()=>btn.textContent=label,2000);
+}
+const CONFIG=window.QUIZ_CONFIG||{};
+async function rpc(fn,body){
+  const r=await fetch(CONFIG.url.replace(/\/$/,"")+"/rest/v1/rpc/"+fn,{method:"POST",headers:Object.assign({"Content-Type":"application/json",apikey:CONFIG.anonKey},CONFIG.anonKey.startsWith("sb_")?{}:{Authorization:"Bearer "+CONFIG.anonKey}),body:JSON.stringify(body)});
+  if(!r.ok)throw new Error(r.status);return r.json();
+}
+function deviceId(){
+  let id=null;try{id=localStorage.getItem("jh-device")}catch(e){}
+  if(!id||!/^[0-9a-f-]{36}$/.test(id)){id=crypto.randomUUID();try{localStorage.setItem("jh-device",id)}catch(e){}}
+  return id;
+}
+function localOnly(msg){
+  try{localMine=JSON.parse(localStorage.getItem("jh-last")||"null")}catch(e){}
+  rows=localMine?[localMine]:[];drawBoard();
+  $("dbNote").textContent=msg;
+}
+
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.side)start(b.dataset.side);
+  else if(b.classList.contains("opt")&&!b.disabled)answer(b);
+  else if(b.id==="qNext")next();
+  else if(b.id==="rAgain")start(st.side);
+  else if(b.id==="shCopy")copyShare(b);
+  else if(b.id==="psCopy")copyShare(b,true);
+});
+
+try{localMine=JSON.parse(localStorage.getItem("jh-last")||"null")}catch(e){}
+route();drawBoard();$("winBig").textContent="集計中…";
+async function loadStats(){
+  try{
+    const res=await rpc("get_standings",{});stats={};
+    for(const r of res||[])if(r.side==="left"||r.side==="right")stats[r.side]=r;
+    drawBoard();
+  }catch(e){$("winBig").textContent="読み込めませんでした"}
+}
+if(!CONFIG.url||CONFIG.url.includes("YOUR-PROJECT")){$("winBig").textContent="データベース未設定";$("dbNote").textContent="config.js にSupabaseの接続情報を設定してください。"}
+else{loadStats();setInterval(()=>{if(!document.hidden)loadStats()},10000);document.addEventListener("visibilitychange",()=>{if(!document.hidden)loadStats()})}
+}
+</script>
+</body>
+</html>
