@@ -259,7 +259,7 @@ body{font:500 18px/1.8 "Noto Serif JP","Zen Old Mincho",serif;letter-spacing:.02
 <section id="vPick" class="page hide">
   <h2 class="ptitle">あなたはどちらですか？</h2>
   <label class="agesel" for="age">あなたの年代
-    <select id="age"><option value="">選んでください</option><option>10代以下</option><option>20代</option><option>30代</option><option>40代</option><option>50代</option><option>60代以上</option></select>
+    <select id="age"><option value="">選んでください</option><option>10代以下</option><option>20代</option><option>30代</option><option>40代</option><option>50代</option><option>60代</option><option>70代以上</option></select>
   </label>
   <p class="err hide" id="ageErr">先に年代を選んでください。</p>
   <p class="lead">年代と立場を選ぶと、すぐにテストが始まります（全10問・各30秒）。</p>
@@ -545,7 +545,7 @@ async function finish(){
 const median=xs=>{if(!xs.length)return null;const v=xs.slice().sort((p,q)=>p-q),m=v.length>>1;return v.length%2?v[m]:(v[m-1]+v[m])/2};
 const fmt=v=>Number.isInteger(v)?String(v):v.toFixed(1);
 let cnt={left:0,right:0},av={left:null,right:null};
-const AGES=["10代以下","20代","30代","40代","50代","60代以上"],MIN_N=30;let approx=false;
+const AGES=["10代以下","20代","30代","40代","50代","60代","70代以上"],MIN_N=30;let approx=false;
 function pts(side,age){const o=[];for(const r of rows){if(r.side!==side||(age&&r.age!==age))continue;const x=Number(r.score),c=Math.max(1,Number(r.n)||1);if(x>=0&&x<=100)o.push([x,c])}return o}
 function medW(p){const tot=p.reduce((a,b)=>a+b[1],0);if(!tot)return null;const v=p.slice().sort((a,b)=>a[0]-b[0]),lo=Math.floor((tot-1)/2),hi=Math.floor(tot/2);let acc=0,a=null,b=null;for(const[x,c]of v){if(a==null&&acc+c>lo)a=x;if(b==null&&acc+c>hi)b=x;acc+=c}return(a+b)/2}
 function Phi(z){const t=1/(1+.2316419*z),d=.3989423*Math.exp(-z*z/2);return 1-d*t*(.3193815+t*(-.3565638+t*(1.781478+t*(-1.821256+t*1.330274))))}

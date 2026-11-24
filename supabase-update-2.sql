@@ -13,7 +13,7 @@ declare
   v_hash text := md5(v_ip || 'jh-salt');
 begin
   if p_side not in ('left','right') or p_score is null or p_score < 0 or p_score > 100 or p_score % 10 <> 0
-     or (p_age is not null and p_age not in ('10代以下','20代','30代','40代','50代','60代以上'))
+     or (p_age is not null and p_age not in ('10代以下','20代','30代','40代','50代','60代','70代以上'))
      or coalesce(p_method,'self') not in ('self','survey')
      or (p_lean is not null and (p_lean < -16 or p_lean > 16)) then
     return 'invalid';
